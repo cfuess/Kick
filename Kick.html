@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+              <style>
+@-webkit-keyframes diagonal-slide {
+  0% {
+    left: 0;
+    top: 0;
+  }
+  100% {
+    left: 100px;
+    top: 100px;
+  }
+}
+
+@keyframes diagonal-slide {
+  0% {
+    left: 0;
+    top: 0;
+  }
+  100% {
+    left: 100px;
+    top: 100px;
+  }
+}
+
+.chuck {
+  /* -webkit-animation: diagonal-slide 5s;
+  animation: diagonal-slide 5s; */
+  width: 100px;
+  height: 100px;
+  position: relative;
+}
+
+#slide {
+  background: #000;
+    top: 100px;
+  left: 700px;
+  width: 100px;
+  height: 70px;
+  position: relative;
+}
+
+#bounce {
+  background: yellow;
+  top: 300px;
+  left: 300px;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+}
+
+
+</style>
+</head>
+<body>
+<div class="chuck" >
+
+<img src="https://d30y9cdsu7xlg0.cloudfront.net/png/127337-200.png" style="width: 50px;"></div>
+
+<div id="slide" class="dude"></div>
+<div id="bounce" class="dude"></div>
+
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+<script>
+$(function() {
+var p = $( "#slide" );
+var position = p.position();
+console.log( "left: " + position.left + ", top: " + position.top );
+
+  /* -webkit-animation: diagonal-slide 5s;
+  animation: diagonal-slide 5s; */
+
+
+});
+
+
+</script>
+</html>
+
+
