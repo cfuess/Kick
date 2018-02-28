@@ -56,8 +56,8 @@
     }
 
     .spin {
-      height: 50px;
-      width: 50px;
+      /* height: 50px;
+      width: 50px; */
       -webkit-animation: rotateY 1s infinite linear;
       animation: rotateY 1s infinite linear;
     }
@@ -89,29 +89,25 @@
 </body>
 
 <script src="./node_modules/jquery/dist/jquery.js"></script>
+<script src="./node_modules/jquery-ui-npm/jquery-ui.js"></script>
 <script src="./node_modules/velocity-animate/velocity.js"></script>
 <script src="./node_modules/velocity-animate/velocity.ui.js"></script>
 
 <script>
+  function spinChuck(chuck) {
+    chuck.addClass("spin", {
+      complete: function () {
+        console.log("completed half spin");
+        chuck.removeClass("spin", {
+          complete: function () {
+            console.log("completed spin");
+          }
+        });
+      }
+    });
+  }
+
   $(function () {
-    // var p = $("#slide");
-    // var position = p.position();
-    // console.log("left: " + position.left + ", top: " + position.top);
-
-    /* -webkit-animation: diagonal-slide 5s;
-    animation: diagonal-slide 5s; */
-
-
-    // $("#chuck").velocity({
-    //   translateX: 300,
-    //   translateY: 300
-    // }, 2000);
-
-    // $("#chuck").velocity({
-    //   translateX: 700,
-    //   translateY: 100
-    // }, 2000);
-
     var chuck = $("#chuck")
     $(".dude").each(function (index) {
       var dude = this;
@@ -121,32 +117,14 @@
       $.Velocity.animate(chuck, {
         translateX: position.left,
         translateY: position.top
-      })
+      }, 1000)
         /* Callback to fire once the animation is complete. */
-        .then(function (elements) { 
-          //$(chuck).addClass('spin')
-          $(dude).hide() 
+        .then(function (elements) {
+          // $(dude).hide()
+          spinChuck(chuck)
         })
         /* Callback to fire if an error occurs. */
         .catch(function (error) { console.log("Rejected."); });
-
-
-      //   $("#chuck").velocity({
-      //     translateX: position.left,
-      //     translateY: position.top
-      //   },
-      //     2000,
-      //     {
-      //       /* Log all the animated divs. */
-      //       complete: function (elements) { 
-      //         console.log(index + ": " + $(this).text());
-      //       }
-      //     })
-      // 
-
-      //
-
-
 
     });
 
