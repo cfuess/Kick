@@ -1,86 +1,124 @@
 <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-    <meta charset="utf-8" />
-    <title></title>
-              <style>
-@-webkit-keyframes diagonal-slide {
-  0% {
-    left: 0;
-    top: 0;
-  }
-  100% {
-    left: 100px;
-    top: 100px;
-  }
-}
+  <meta charset="utf-8" />
+  <title></title>
+  <style>
+    @-webkit-keyframes diagonal-slide {
+      0% {
+        left: 0;
+        top: 0;
+      }
+      100% {
+        left: 100px;
+        top: 100px;
+      }
+    }
 
-@keyframes diagonal-slide {
-  0% {
-    left: 0;
-    top: 0;
-  }
-  100% {
-    left: 100px;
-    top: 100px;
-  }
-}
+    @keyframes diagonal-slide {
+      0% {
+        left: 0;
+        top: 0;
+      }
+      100% {
+        left: 100px;
+        top: 100px;
+      }
+    }
 
-.chuck {
-  /* -webkit-animation: diagonal-slide 5s;
+    .chuck {
+      /* -webkit-animation: diagonal-slide 5s;
   animation: diagonal-slide 5s; */
-  width: 100px;
-  height: 100px;
-  position: relative;
-}
+      width: 100px;
+      height: 100px;
+      position: relative;
+    }
 
-#slide {
-  background: #000;
-    top: 100px;
-  left: 700px;
-  width: 100px;
-  height: 70px;
-  position: relative;
-}
+    #slide {
+      background: #000;
+      top: 100px;
+      left: 700px;
+      width: 100px;
+      height: 70px;
+      position: relative;
+    }
 
-#bounce {
-  background: yellow;
-  top: 300px;
-  left: 300px;
-  width: 50px;
-  height: 50px;
-  position: absolute;
-}
-
-
-</style>
+    #bounce {
+      background: pink;
+      top: 300px;
+      left: 300px;
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      border: 0 solid #000;
+    }
+  </style>
 </head>
+
 <body>
-<div class="chuck" >
 
-<img src="https://d30y9cdsu7xlg0.cloudfront.net/png/127337-200.png" style="width: 50px;"></div>
+  <div id="chuck">
+    <img src="./assets/kick.svg" style="width: 500px;">
+  </div>
 
-<div id="slide" class="dude"></div>
-<div id="bounce" class="dude"></div>
+  <div id="slide" class="dude"></div>
+  <div id="bounce" class="dude"></div>
+  <div class="dude">facebook</div>
 
 </body>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+
+<script src="./node_modules/jquery/dist/jquery.js"></script>
+<script src="./node_modules/velocity-animate/velocity.js"></script>
+<script src="./node_modules/velocity-animate/velocity.ui.js"></script>
 
 <script>
-$(function() {
-var p = $( "#slide" );
-var position = p.position();
-console.log( "left: " + position.left + ", top: " + position.top );
+  $(function () {
+    // var p = $("#slide");
+    // var position = p.position();
+    // console.log("left: " + position.left + ", top: " + position.top);
 
-  /* -webkit-animation: diagonal-slide 5s;
-  animation: diagonal-slide 5s; */
+    /* -webkit-animation: diagonal-slide 5s;
+    animation: diagonal-slide 5s; */
 
 
-});
+    // $("#chuck").velocity({
+    //   translateX: 300,
+    //   translateY: 300
+    // }, 2000);
+
+    // $("#chuck").velocity({
+    //   translateX: 700,
+    //   translateY: 100
+    // }, 2000);
+
+
+    $(".dude").each(function (index) {
+      var position = $(this).position();
+      // console.log("left: " + position.left + ", top: " + position.top);
+
+      $("#chuck").velocity({
+        translateX: position.left,
+        translateY: position.top
+      },
+        2000,
+        {
+          /* Log all the animated divs. */
+          complete: function (elements) { 
+            console.log(index + ": " + $(this).text());
+          }
+        })
+    })
+
+    //$(this).hide()
+
+
+
+  });
+
 
 
 </script>
+
 </html>
-
-
