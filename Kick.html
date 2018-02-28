@@ -54,13 +54,32 @@
       position: absolute;
       border: 0 solid #000;
     }
+
+    .spin {
+      height: 50px;
+      width: 50px;
+      -webkit-animation: rotateY 1s infinite linear;
+      animation: rotateY 1s infinite linear;
+    }
+
+    @-webkit-keyframes rotateY {
+      to {
+        -webkit-transform: rotateY(360deg);
+      }
+    }
+
+    @keyframes rotateY {
+      to {
+        transform: rotateY(360deg);
+      }
+    }
   </style>
 </head>
 
 <body>
 
   <div id="chuck">
-    <img src="./assets/kick.svg" style="width: 500px;">
+    <img src="./assets/kick.png" style="width: 50px;">
   </div>
 
   <div id="slide" class="dude"></div>
@@ -93,31 +112,45 @@
     //   translateY: 100
     // }, 2000);
 
-
+    var chuck = $("#chuck")
     $(".dude").each(function (index) {
-      var position = $(this).position();
+      var dude = this;
+      var position = $(dude).position();
       // console.log("left: " + position.left + ", top: " + position.top);
 
-      $("#chuck").velocity({
+      $.Velocity.animate(chuck, {
         translateX: position.left,
         translateY: position.top
-      },
-        2000,
-        {
-          /* Log all the animated divs. */
-          complete: function (elements) { 
-            console.log(index + ": " + $(this).text());
-          }
+      })
+        /* Callback to fire once the animation is complete. */
+        .then(function (elements) { 
+          //$(chuck).addClass('spin')
+          $(dude).hide() 
         })
-    })
-
-    //$(this).hide()
-
+        /* Callback to fire if an error occurs. */
+        .catch(function (error) { console.log("Rejected."); });
 
 
-  });
+      //   $("#chuck").velocity({
+      //     translateX: position.left,
+      //     translateY: position.top
+      //   },
+      //     2000,
+      //     {
+      //       /* Log all the animated divs. */
+      //       complete: function (elements) { 
+      //         console.log(index + ": " + $(this).text());
+      //       }
+      //     })
+      // 
+
+      //
 
 
+
+    });
+
+  })
 
 </script>
 
