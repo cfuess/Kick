@@ -79,11 +79,11 @@
 <body>
 
   <div id="chuck">
-    <img src="./assets/kick.png" style="width: 50px;">
+    <img src="./assets/kick.svg" style="width: 50px;">
   </div>
 
   <div id="slide" class="dude"></div>
-  <div id="bounce" class="dude"></div>
+  <div id="bounce" class="dude">facebook</div>
   <div class="dude">facebook</div>
 
 </body>
@@ -107,8 +107,30 @@
     });
   }
 
+  function testDude(text) {
+    var items = $("div")
+    items.filter(function () {
+      return $(this).text().toLowerCase().indexOf(text.toLowerCase()) >= 0;
+    }).first();
+  }
+
+  function getDudes() {
+    var tests = ['facebook', 'twitter'];
+    dudes = [];
+    for (index = 0; index < tests.length; ++index) {
+      console.log(testDude(tests[index]));
+      debugger;
+      if (function (){ dudes.push(testDude(test));}){
+        console.log(tests[index]);
+      }
+    }
+    console.log('dudes:' + dudes);
+  }
+
   $(function () {
     var chuck = $("#chuck")
+    getDudes();
+    //$("div:contains('facebook')").css("text-decoration", "underline");
     $(".dude").each(function (index) {
       var dude = this;
       var position = $(dude).position();
